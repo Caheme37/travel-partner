@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ceci no Mundo — A tua próxima viagem começa aqui</title>
+  <title>Ceci no Mundo — Travel Partner</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
@@ -100,26 +100,35 @@
     .logo-name { font-family:'Caveat',cursive; font-weight:700; font-size:20px; color:var(--dark-blue); letter-spacing:-0.01em; line-height:1.05; }
     .logo-tagline { font-family:'Caveat',cursive; font-size:11px; font-weight:400; letter-spacing:0.02em; color:var(--dark-muted); margin-top:3px; }
 
-    /* ── PILL — Hormozi value pill ── */
-    .value-pill {
-      display:inline-flex; align-items:center; gap:6px;
-      background:rgba(187,227,210,0.35); color:#2d6b52;
-      font-size:12px; font-weight:600; letter-spacing:0.04em;
-      padding:5px 13px; border-radius:100px; margin-bottom:14px;
-      border:1px solid rgba(187,227,210,0.7);
+    /* PILL */
+    .green-pill {
+      display:inline-flex; align-items:center; gap:5px;
+      background:rgba(187,227,210,0.35); color:#3a7a62;
+      font-size:11px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase;
+      padding:4px 11px; border-radius:100px; margin-bottom:14px;
+      border:1px solid rgba(187,227,210,0.6);
     }
-    .value-pill .pill-dot {
-      width:7px; height:7px; background:#3a7a62; border-radius:50%;
-      animation:pulse-dot 2s infinite; flex-shrink:0;
+    .green-pill::before {
+      content:''; width:6px; height:6px; background:#3a7a62; border-radius:50%;
+      animation:pulse-dot 2s infinite;
     }
     @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.8);} }
 
     .headline-eyebrow { font-family:'DM Sans',sans-serif; font-weight:300; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--dark-muted); margin-bottom:8px; }
     h1 { font-family:'DM Serif Display',serif; font-size:33px; line-height:1.18; color:var(--dark-blue); margin-bottom:6px; }
     .highlight-word { font-style:italic; color:var(--purple); background:linear-gradient(135deg,var(--purple) 0%,#8b82e8 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-size:37px; }
-    .headline-sub { font-size:14px; font-weight:400; color:var(--dark-muted); line-height:1.65; margin-top:12px; margin-bottom:34px; }
+    .headline-sub { font-size:14px; font-weight:400; color:var(--dark-muted); line-height:1.65; margin-top:12px; margin-bottom:28px; }
 
-    /* ── FORM ── */
+    /* BADGES */
+    .badges-row {
+      display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+      gap:6px 4px; margin-bottom:28px;
+    }
+    .badge-item { display:flex; align-items:center; gap:6px; font-size:11.5px; font-weight:400; color:var(--dark-muted); white-space:nowrap; }
+    .badge-item svg { flex-shrink:0; }
+    .badge-sep { color:var(--purple); font-weight:600; font-size:13px; line-height:1; }
+
+    /* FORM */
     .form { display:flex; flex-direction:column; gap:20px; }
     .field { display:flex; flex-direction:column; gap:6px; }
     label { font-size:11px; font-weight:500; letter-spacing:0.10em; text-transform:uppercase; color:var(--dark-muted); }
@@ -150,7 +159,7 @@
     .form-footer a { color:var(--purple); text-decoration:none; }
     .form-footer a:hover { text-decoration:underline; }
 
-    /* ── CHAT ── */
+    /* CHAT */
     .chat-wrap { display:none; flex-direction:column; }
     .chat-wrap.visible { display:flex; }
     .chat-header { display:flex; align-items:center; gap:10px; margin-bottom:20px; }
@@ -180,7 +189,7 @@
     .dot:nth-child(3) { animation-delay:0.4s; }
     @keyframes bounce { 0%,80%,100%{transform:translateY(0);} 40%{transform:translateY(-6px);} }
 
-    /* ── PÁGINA DE AGRADECIMENTO ── */
+    /* PÁGINA DE AGRADECIMENTO */
     .thank-you-page {
       display:none; flex-direction:column; align-items:center;
       text-align:center; padding:16px 8px 32px;
@@ -218,9 +227,7 @@
       background:linear-gradient(90deg,var(--purple),var(--green));
       margin-bottom:20px;
     }
-    .ty-footer {
-      font-size:12px; color:#b0afbc; line-height:1.6;
-    }
+    .ty-footer { font-size:12px; color:#b0afbc; line-height:1.6; }
 
     .chat-input-row { display:flex; gap:8px; }
     .chat-input {
@@ -245,7 +252,7 @@
       h1 { font-size:28px; }
       .highlight-word { font-size:32px; }
     }
-</style>
+  </style>
 </head>
 <body>
 
@@ -301,21 +308,40 @@
       </div>
     </div>
 
-    <!-- PILL HORMOZI -->
-    <div class="value-pill">
-      <span class="pill-dot"></span>
-      Proposta personalizada em 24h
-    </div>
-
-    <div class="headline-eyebrow">Planeamento personalizado</div>
+    <div class="headline-eyebrow">Programa Travel Partner</div>
     <h1>
-      A tua próxima<br>
-      <span class="highlight-word">aventura</span><br>
+      O teu próximo<br>
+      <span class="highlight-word">capítulo</span><br>
       começa aqui.
     </h1>
     <p class="headline-sub">
-      Fala com a Ceci e conta-nos o que sonhas para a tua próxima viagem — em poucos minutos tens uma proposta feita à tua medida.
+      Flexibilidade, comunidade e rendimento real — sem abandonares a tua vida. Descobre em 2 minutos se o Travel Partner é para ti.
     </p>
+
+    <div class="badges-row">
+      <div class="badge-item">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M10.5 7a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0ZM2 13c0-2.21 2.686-4 6-4s6 1.79 6 4" stroke="#ada5f2" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        <span>Rede activa de parceiros</span>
+      </div>
+      <span class="badge-sep">·</span>
+      <div class="badge-item">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="6" stroke="#ada5f2" stroke-width="1.4"/>
+          <path d="M8 5v3.5l2 1.5" stroke="#ada5f2" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        <span>Resposta em 24h</span>
+      </div>
+      <span class="badge-sep">·</span>
+      <div class="badge-item">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M2 8.5C2 5.46 4.46 3 7.5 3c1.38 0 2.64.5 3.6 1.32M14 7.5C14 10.54 11.54 13 8.5 13c-1.38 0-2.64-.5-3.6-1.32" stroke="#ada5f2" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M11.5 4l.6 2.5-2.5.6M4.5 12l-.6-2.5 2.5-.6" stroke="#ada5f2" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Flexível com a tua vida</span>
+      </div>
+    </div>
 
     <!-- FORM -->
     <div id="formSection">
@@ -333,18 +359,18 @@
           <input type="tel" id="telefone" name="telefone" placeholder="+351 000 000 000" autocomplete="tel" required>
         </div>
         <div class="field">
-          <label for="origem">De onde partes?</label>
-          <input type="text" id="origem" name="origem" placeholder="Ex: Lisboa, Porto, Faro…" required>
+          <label for="origem">Profissão actual</label>
+          <input type="text" id="origem" name="origem" placeholder="Ex: Gestor, Professor, Enfermeira…" required>
         </div>
         <button type="submit" class="btn-cta">
           <svg viewBox="0 0 18 18" fill="none">
             <path d="M3 9h12M10 5l5 4-5 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          Falar com a Ceci
+          Quero saber mais
         </button>
       </form>
       <p class="form-footer">
-        Os teus dados são tratados com respeito total. Sem spam, prometido.<br>
+        Os teus dados são tratados com total confidencialidade. Sem compromisso.<br>
         <a href="#">Política de privacidade</a>
       </p>
     </div>
@@ -354,7 +380,7 @@
       <div class="chat-header">
         <div class="chat-avatar">C</div>
         <div>
-          <div class="chat-name">Ceci</div>
+          <div class="chat-name">Cecília</div>
           <div class="chat-status" id="chatStatusDot">● online agora</div>
         </div>
       </div>
@@ -378,8 +404,8 @@
 
 <script>
 (function() {
-  const N8N_CHAT_URL    = 'https://automacao.beondigitals.cloud/webhook/viajante';
-  const N8N_BRIEFING_URL = 'https://automacao.beondigitals.cloud/webhook/ceci-no-mundo-briefing-viajante';
+  const N8N_CHAT_URL    = 'https://automacao.beondigitals.cloud/webhook/ceci-no-mundo-conversa-partner';
+  const N8N_BRIEFING_URL = 'https://automacao.beondigitals.cloud/webhook/ceci-no-mundo-briefing-partner';
 
   const messages = [];
   let userData   = {};
@@ -416,15 +442,12 @@
     const chatSection = document.getElementById('chatSection');
     const tyPage      = document.getElementById('thankYouPage');
 
-    // Esconder o chat com fade out
     chatSection.style.transition = 'opacity 0.4s ease';
     chatSection.style.opacity = '0';
 
     setTimeout(() => {
-      // Esconder tudo do chat
       chatSection.style.display = 'none';
 
-      // Construir a página de agradecimento com o nome e a mensagem final
       tyPage.innerHTML = `
         <div class="ty-icon">
           <svg viewBox="0 0 28 28" fill="none">
@@ -432,9 +455,9 @@
           </svg>
         </div>
         <div class="ty-eyebrow">Ceci no Mundo</div>
-        <h2 class="ty-title">Proposta a<br><span>caminho</span> ✈️</h2>
+        <h2 class="ty-title">Análise a<br><span>caminho</span> ✈️</h2>
         <div class="ty-message">
-          Adorei conhecer-te! Já tenho tudo o que preciso para encontrar a viagem certa para ti. A tua proposta chega em breve ao teu email — foi um gosto falar contigo! ✈️
+          Obrigada pela honestidade! Já tenho tudo o que preciso para perceber se o Travel Partner é para ti. A tua análise personalizada chega em breve ao teu email — foi um gosto falar contigo!
         </div>
         <div class="ty-divider"></div>
         <div class="ty-footer">Os teus dados são tratados com total confidencialidade.<br>Sem spam, prometido.</div>
@@ -475,17 +498,23 @@
     showTyping();
 
     try {
-      const res  = await fetch(N8N_CHAT_URL, {
+      const isFirst = messages.length === 0 || (messages.length === 1 && messages[0].role === 'user' && userText === '');
+      const res = await fetch(N8N_CHAT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages, userData, source: window.location.href, context: '', isFirstMessage: messages.length === 0 })
+        body: JSON.stringify({
+          messages,
+          userData,
+          source: window.location.href,
+          context: '',
+          isFirstMessage: messages.length === 0
+        })
       });
       const data = await res.json();
       removeTyping();
 
       const raw = data.text || '';
 
-      // Separar mensagem visível do bloco de dados oculto
       const dataIndex   = raw.indexOf('[CONVERSA_COMPLETA]');
       const visibleText = dataIndex >= 0
         ? raw.substring(0, dataIndex).trim()
@@ -496,20 +525,21 @@
         appendMsg(visibleText, 'bot');
       }
 
-      // Conversa completa — extrair JSON e encerrar
       if (dataIndex >= 0) {
         conversaEncerrada = true;
         const dadosMatch = raw.match(/\[DADOS\]([\s\S]*?)\[\/DADOS\]/);
         if (dadosMatch) {
           try {
             const dadosJson = JSON.parse(dadosMatch[1].trim());
-            // 5 segundos para o lead ler a mensagem de fecho com calma
             setTimeout(() => {
               const primeiroNome = (userData.nome || '').split(' ')[0];
               bloquearInput(primeiroNome);
               enviarBriefing(dadosJson, raw);
             }, 10000);
-          } catch(e) { console.error('Erro parse JSON:', e); setTimeout(() => bloquearInput((userData.nome || '').split(' ')[0]), 10000); }
+          } catch(e) {
+            console.error('Erro parse JSON:', e);
+            setTimeout(() => bloquearInput((userData.nome || '').split(' ')[0]), 10000);
+          }
         } else {
           setTimeout(() => bloquearInput((userData.nome || '').split(' ')[0]), 10000);
         }
