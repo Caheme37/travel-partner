@@ -515,6 +515,16 @@
 
       const raw = data.text || '';
 
+      const visibleText = raw.indexOf('[CONVERSA_COMPLETA]') >= 0
+      ? raw.substring(0, raw.indexOf('[CONVERSA_COMPLETA]')).trim()
+      : raw.trim();
+
+      const delaySegundos = Math.min(Math.max(visibleText.length * 40, 2000), 6000);
+
+      await new Promise(resolve => setTimeout(resolve, delaySegundos));
+
+      removeTyping();
+
       const dataIndex   = raw.indexOf('[CONVERSA_COMPLETA]');
       const visibleText = dataIndex >= 0
         ? raw.substring(0, dataIndex).trim()
