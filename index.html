@@ -589,6 +589,18 @@
       if (dataIndex >= 0) {
         conversaEncerrada = true;
         const dadosMatch = raw.match(/\[DADOS\]([\s\S]*?)\[\/DADOS\]/);
+
+        // Tempo de leitura da mensagem de fecho antes de mostrar a página de agradecimento.
+        // Baseado no comprimento do texto, para a pessoa ter tempo de ler tudo.
+        function calcReadDelay(text) {
+          const len = (text || '').length;
+          const base = 14000;               // mínimo de 14s, mesmo para fechos curtos
+          const perChar = 60;                // ~60ms por caracter de leitura adicional
+          const max = 26000;                 // teto de 26s para não atrasar demasiado
+          return Math.min(max, base + len * perChar / 10);
+        }
+        const readDelay = calcReadDelay(visibleText);
+
         if (dadosMatch) {
           try {
             const dadosJson = JSON.parse(dadosMatch[1].trim());
@@ -596,13 +608,13 @@
               const primeiroNome = (userData.nome || '').split(' ')[0];
               bloquearInput(primeiroNome);
               enviarBriefing(dadosJson, raw);
-            }, 10000);
+            }, readDelay);
           } catch(e) {
             console.error('Erro parse JSON:', e);
-            setTimeout(() => bloquearInput((userData.nome || '').split(' ')[0]), 10000);
+            setTimeout(() => bloquearInput((userData.nome || '').split(' ')[0]), readDelay);
           }
         } else {
-          setTimeout(() => bloquearInput((userData.nome || '').split(' ')[0]), 10000);
+          setTimeout(() => bloquearInput((userData.nome || '').split(' ')[0]), readDelay);
         }
       }
 
