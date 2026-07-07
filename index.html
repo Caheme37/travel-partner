@@ -487,42 +487,16 @@
     if (t) t.remove();
   }
 
-  function bloquearInput(nomeDisplay, dadosJson) {
-  const chatSection = document.getElementById('chatSection');
-  const tyPage      = document.getElementById('thankYouPage');
+  function bloquearInput(nomeDisplay) {
+    const chatSection = document.getElementById('chatSection');
+    const tyPage      = document.getElementById('thankYouPage');
 
-  chatSection.style.transition = 'opacity 0.4s ease';
-  chatSection.style.opacity = '0';
+    chatSection.style.transition = 'opacity 0.4s ease';
+    chatSection.style.opacity = '0';
 
-  const scoreQualifica = ['Verde', 'Amarelo'].includes((dadosJson && dadosJson.score) || '');
-  const recusouExplicitamente = dadosJson && dadosJson.resposta_convite === 'nao';
-  const podeAgendar = scoreQualifica && !recusouExplicitamente;
+    setTimeout(() => {
+      chatSection.style.display = 'none';
 
-  setTimeout(() => {
-    chatSection.style.display = 'none';
-
-    if (podeAgendar) {
-      tyPage.innerHTML = `
-        <div class="ty-icon">
-          <svg viewBox="0 0 28 28" fill="none">
-            <path d="M5 14.5l6 6 12-12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="ty-eyebrow">Ceci no Mundo</div>
-        <h2 class="ty-title">Vamos falar<br><span>15 minutos</span>?</h2>
-        <div class="ty-message">
-          Obrigada pela honestidade! O teu perfil encaixa no Travel Partner — escolhe abaixo o melhor horário.
-        </div>
-        <div class="ty-divider"></div>
-        <button data-cal-link="opnai-xyz-61hlxc/15min"
-                data-cal-namespace="15min"
-                data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-                style="display:inline-block;background:#31313f;color:#fff;font-weight:600;font-size:14px;border:none;padding:14px 32px;border-radius:12px;cursor:pointer;">
-          Marcar os meus 15 minutos →
-        </button>
-        <div class="ty-footer" style="margin-top:16px">Preferes por email? Vais receber tudo em breve também.</div>
-      `;
-    } else {
       tyPage.innerHTML = `
         <div class="ty-icon">
           <svg viewBox="0 0 28 28" fill="none">
@@ -537,11 +511,10 @@
         <div class="ty-divider"></div>
         <div class="ty-footer">Os teus dados são tratados com total confidencialidade.<br>Sem spam, prometido.</div>
       `;
-    }
 
-    tyPage.classList.add('visible');
-  }, 400);
-}
+      tyPage.classList.add('visible');
+    }, 400);
+  }
 
   // ── enviar briefing ao n8n ─────────────────────────────────────
   async function enviarBriefing(dados, conversa) {
@@ -633,7 +606,7 @@
             const dadosJson = JSON.parse(dadosMatch[1].trim());
             setTimeout(() => {
               const primeiroNome = (userData.nome || '').split(' ')[0];
-              bloquearInput(primeiroNome, dadosJson);
+              bloquearInput(primeiroNome);
               enviarBriefing(dadosJson, raw);
             }, readDelay);
           } catch(e) {
@@ -695,14 +668,5 @@
   });
 })();
 </script>
-  <!-- Cal element-click embed code begins -->
-<script type="text/javascript">
-  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-Cal("init", "15min", {origin:"https://app.cal.com"});
-Cal.config = Cal.config || {};
-Cal.config.forwardQueryParams = true;
-Cal.ns["15min"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#ada5f2"}},"hideEventTypeDetails":false,"layout":"month_view"});
-</script>
-<!-- Cal element-click embed code ends -->
 </body>
 </html>
