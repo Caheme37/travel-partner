@@ -487,16 +487,42 @@
     if (t) t.remove();
   }
 
-  function bloquearInput(nomeDisplay) {
-    const chatSection = document.getElementById('chatSection');
-    const tyPage      = document.getElementById('thankYouPage');
+  function bloquearInput(nomeDisplay, dadosJson) {
+  const chatSection = document.getElementById('chatSection');
+  const tyPage      = document.getElementById('thankYouPage');
 
-    chatSection.style.transition = 'opacity 0.4s ease';
-    chatSection.style.opacity = '0';
+  chatSection.style.transition = 'opacity 0.4s ease';
+  chatSection.style.opacity = '0';
 
-    setTimeout(() => {
-      chatSection.style.display = 'none';
+  const scoreQualifica = ['Verde', 'Amarelo'].includes((dadosJson && dadosJson.score) || '');
+  const recusouExplicitamente = dadosJson && dadosJson.resposta_convite === 'nao';
+  const podeAgendar = scoreQualifica && !recusouExplicitamente;
 
+  setTimeout(() => {
+    chatSection.style.display = 'none';
+
+    if (podeAgendar) {
+      tyPage.innerHTML = `
+        <div class="ty-icon">
+          <svg viewBox="0 0 28 28" fill="none">
+            <path d="M5 14.5l6 6 12-12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="ty-eyebrow">Ceci no Mundo</div>
+        <h2 class="ty-title">Vamos falar<br><span>15 minutos</span>?</h2>
+        <div class="ty-message">
+          Obrigada pela honestidade! O teu perfil encaixa no Travel Partner — escolhe abaixo o melhor horário.
+        </div>
+        <div class="ty-divider"></div>
+        <button data-cal-link="opnai-xyz-61hlxc/15min"
+                data-cal-namespace="15min"
+                data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+                style="display:inline-block;background:#31313f;color:#fff;font-weight:600;font-size:14px;border:none;padding:14px 32px;border-radius:12px;cursor:pointer;">
+          Marcar os meus 15 minutos →
+        </button>
+        <div class="ty-footer" style="margin-top:16px">Preferes por email? Vais receber tudo em breve também.</div>
+      `;
+    } else {
       tyPage.innerHTML = `
         <div class="ty-icon">
           <svg viewBox="0 0 28 28" fill="none">
@@ -511,10 +537,11 @@
         <div class="ty-divider"></div>
         <div class="ty-footer">Os teus dados são tratados com total confidencialidade.<br>Sem spam, prometido.</div>
       `;
+    }
 
-      tyPage.classList.add('visible');
-    }, 400);
-  }
+    tyPage.classList.add('visible');
+  }, 400);
+}
 
   // ── enviar briefing ao n8n ─────────────────────────────────────
   async function enviarBriefing(dados, conversa) {
@@ -606,7 +633,7 @@
             const dadosJson = JSON.parse(dadosMatch[1].trim());
             setTimeout(() => {
               const primeiroNome = (userData.nome || '').split(' ')[0];
-              bloquearInput(primeiroNome);
+              bloquearInput(primeiroNome, dadosJson);
               enviarBriefing(dadosJson, raw);
             }, readDelay);
           } catch(e) {
