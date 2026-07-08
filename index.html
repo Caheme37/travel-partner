@@ -349,18 +349,17 @@
       </div>
     </div>
 
-    <div class="headline-eyebrow">Programa Travel Partner</div>
-    <h1>
-      Parabéns!<br>
-      O teu futuro no<br>
-      <span class="highlight-word">turismo</span><br>
-      começa agora.
+    <div class="headline-eyebrow" id="introHeader">Programa Travel Partner</div>
+    <h1 id="introHeading">
+      O teu próximo<br>
+      <span class="highlight-word">capítulo</span><br>
+      começa aqui.
     </h1>
-    <p class="headline-sub">
-      Deste o passo certo para te tornares dono do teu próprio negócio de viagens! Obrigado pelo teu interesse. Prepara-te para conquistar a tua independência financeira, viajar mais e crescer com a maior rede de Travel Partners. Vai já à tua caixa de entrada, enviámos-te os detalhes para começares!
+    <p class="headline-sub" id="introSub">
+      Descobre em 2 minutos se o Travel Partner é para ti.
     </p>
 
-    <div class="badges-row">
+    <div class="badges-row" id="introBadges">
       <div class="badge-item">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M10.5 7a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0ZM2 13c0-2.21 2.686-4 6-4s6 1.79 6 4" stroke="#ada5f2" stroke-width="1.4" stroke-linecap="round"/>
@@ -498,16 +497,21 @@
     setTimeout(() => {
       chatSection.style.display = 'none';
 
+      const introEls = ['introHeader','introHeading','introSub','introBadges']
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+      introEls.forEach(el => el.style.display = 'none');
+
       tyPage.innerHTML = `
         <div class="ty-icon">
           <svg viewBox="0 0 28 28" fill="none">
             <path d="M5 14.5l6 6 12-12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <div class="ty-eyebrow">Ceci no Mundo</div>
-        <h2 class="ty-title">Análise a<br><span>caminho</span> ✈️</h2>
+        <div class="ty-eyebrow">Programa Travel Partner</div>
+        <h2 class="ty-title">Parabéns!<br>O teu futuro no<br><span>turismo</span> começa agora.</h2>
         <div class="ty-message">
-          Obrigada pela honestidade! Já tenho tudo o que preciso para perceber se o Travel Partner é para ti. A tua análise personalizada chega em breve ao teu email — foi um gosto falar contigo!
+          Deste o passo certo para te tornares dono do teu próprio negócio de viagens! Obrigado pelo teu interesse. Prepara-te para conquistar a tua independência financeira, viajar mais e crescer com a maior rede de Travel Partners. Vai já à tua caixa de entrada, enviámos-te os detalhes para começares!
         </div>
         <div class="ty-divider"></div>
         <div class="ty-footer">Os teus dados são tratados com total confidencialidade.<br>Sem spam, prometido.</div>
