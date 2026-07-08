@@ -442,9 +442,6 @@
       </div>
       <div class="chat-messages" id="chatMessages"></div>
 
-      <!-- Página de agradecimento — substitui o chat após fecho -->
-      <div class="thank-you-page" id="thankYouPage"></div>
-
       <div class="chat-input-row" id="chatInputRow">
         <input type="text" class="chat-input" id="chatInput" placeholder="Escreve aqui…" autocomplete="off">
         <button class="chat-send" id="chatSend" aria-label="Enviar">
@@ -454,6 +451,10 @@
         </button>
       </div>
     </div>
+
+    <!-- Página de agradecimento — substitui o chat após fecho. Fica FORA do chatSection de propósito: -->
+    <!-- se estivesse lá dentro, escondê-lo escondia isto também. -->
+    <div class="thank-you-page" id="thankYouPage"></div>
 
   </div>
 </div>
