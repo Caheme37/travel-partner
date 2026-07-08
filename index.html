@@ -532,14 +532,18 @@
   }
 
   // ── enviar briefing ao n8n ─────────────────────────────────────
-  async function enviarBriefing(dados, conversa) {
+  function construirTranscript() {
+    return messages.map(m => (m.role === 'user' ? 'Lead: ' : 'Cecília: ') + m.content).join('\n\n');
+  }
+
+  async function enviarBriefing(dados) {
     const payload = {
       nome:    userData.nome,
       email:   userData.email,
       tel:     userData.tel,
       source:  window.location.href,
-      conversa: conversa,
-      ...dados
+      ...dados,
+      conversa: construirTranscript()
     };
     try {
       await fetch(N8N_BRIEFING_URL, {
@@ -622,7 +626,7 @@
             setTimeout(() => {
               const primeiroNome = (userData.nome || '').split(' ')[0];
               bloquearInput(primeiroNome);
-              enviarBriefing(dadosJson, raw);
+              enviarBriefing(dadosJson);
             }, readDelay);
           } catch(e) {
             console.error('Erro parse JSON:', e);
