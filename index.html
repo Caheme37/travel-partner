@@ -153,12 +153,19 @@
     .privacy-check:has(input:checked) { border-color:var(--purple); background:#f0eeff; }
     /* Esconde o checkbox nativo */
     .privacy-check input[type="checkbox"] {
-      appearance:none; -webkit-appearance:none;
-      width:20px; height:20px; min-width:20px; margin-top:1px;
-      border:2px solid #c0bfcc; border-radius:5px;
-      background:#fff; cursor:pointer;
-      transition:border-color 0.2s, background 0.2s;
-      flex-shrink:0; position:relative;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
+      display: inline-block;
+      width: 20px; height: 20px; min-width: 20px; max-width: 20px;
+      margin: 1px 0 0 0; padding: 0;
+      border: 2px solid #c0bfcc; border-radius: 5px;
+      background: #fff; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      flex-shrink: 0; position: relative;
+      outline: none;
     }
     .privacy-check input[type="checkbox"]:checked {
       background:var(--purple); border-color:var(--purple);
